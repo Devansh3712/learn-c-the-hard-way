@@ -87,11 +87,11 @@ void Database_set(Connection *conn, int id, const char *name, const char *email)
 	addr->set = 1;
 	char* res = strncpy(addr->name, name, MAX_DATA);
 	res[MAX_DATA - 1] = '\0';
-	if (!res) die("Name copy failed");
+	if (!res) die("Failed to copy name");
 
 	res = strncpy(addr->email, email, MAX_DATA);
 	res[MAX_DATA - 1] = '\0';
-	if (!res) die("Email copy failed");
+	if (!res) die("Failed to copy email");
 }
 
 void Database_get(Connection *conn, int id) {
