@@ -6,6 +6,9 @@
 #define MAX_DATA 512
 #define MAX_ROWS 100
 
+// Reference for struct packing
+// http://www.catb.org/esr/structure-packing/
+
 typedef struct {
 	int id;
 	int set;

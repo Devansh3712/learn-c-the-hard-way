@@ -1,2 +1,5 @@
-ex17:
-	cc -Wall -g ex17.c -o ex17
+ex:
+	cc -Wall -g ex${N}.c -o main
+
+clean:
+	rm main
