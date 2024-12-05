@@ -1,5 +1,5 @@
 ex:
-	cc -Wall -g ex${N}.c -o main
+	cc -Wall ${FLAGS} -g ex${N}.c -o main
 
 clean:
 	rm main
