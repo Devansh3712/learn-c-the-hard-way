@@ -8,6 +8,7 @@
 #ifdef NDEBUG
 #define debug(M, ...)
 #else
+// ##__VA_ARGS__ is used to deal with case of passing no arguments
 #define debug(M, ...) fprintf(stderr, "DEBUG %s: %s:%d " M "\n",\
 	__FILE__, __func__, __LINE__, ##__VA_ARGS__)
 #endif
