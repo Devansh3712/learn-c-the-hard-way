@@ -1,6 +1,7 @@
-CFLAGS=-g -O2 -Wall -Wextra -Isrc -rdynamic -DNDEBUG $(OPTFLAGS)
+CFLAGS=-g -O2 -Wall -Wextra -I./src -rdynamic -DNDEBUG $(OPTFLAGS)
+LDFLAGS=-L./build/
 # Link libraries
-LIBS=-llcthw -ldl $(OPTLIBS)
+LDLIBS=-ldl $(OPTLIBS)
 # ? means an optional value
 PREFIX?=/usr/local
 
@@ -33,13 +34,13 @@ build:
 
 # Unit Tests
 .PHONY: tests
-tests: CFLAGS += -Lbuild
+tests: LDLIBS += $(TARGET)
 tests: $(TESTS)
 	sh ./tests/runtests.sh
 
 clean:
 	rm -rf build $(OBJECTS) $(TESTS)
-	rm -f tests/tests/log
+	rm -f tests/tests.log
 	find . -name "*.gc" -exec rm {} \;
 	rm -rf `find . -name ".dSYM" -print`
 
