@@ -1,0 +1,40 @@
+#ifndef __debug_h__
+#define __debug_h__
+
+#include <errno.h>
+#include <stdio.h>
+#include <string.h>
+
+#ifdef NDEBUG
+#define debug(M, ...)
+#else
+// ##__VA_ARGS__ is used to deal with case of passing no arguments
+#define debug(M, ...) fprintf(stderr, "DEBUG %s: %s:%d " M "\n",\
+	__FILE__, __func__, __LINE__, ##__VA_ARGS__)
+#endif
+
+#define clean_errno() (errno == 0 ? "None" : strerror(errno))
+
+#define log_err(M, ...) fprintf(stderr,\
+	"[ERROR] (%s: %s:%d errno: %s) " M "\n", __FILE__, __func__, __LINE__,\
+	clean_errno(), ##__VA_ARGS__)
+
+#define log_warn(M, ...) fprintf(stderr,\
+	"[WARN] (%s: %s:%d errno: %s) " M "\n",\
+	__FILE__, __func__, __LINE__, clean_errno(), ##__VA_ARGS__)
+
+#define log_info(M, ...) fprintf(stderr, "[INFO] (%s: %s:%d) " M "\n",\
+	__FILE__, __func__, __LINE__, ##__VA_ARGS__)
+
+#define check(A, M, ...) if(!(A)) {\
+	log_err(M, ##__VA_ARGS__); errno=0; goto error; }
+
+#define sentinel(M, ...) { log_err(M, ##__VA_ARGS__);\
+	errno=0; goto error; }
+
+#define check_mem(A) check((A), "Out of memory")
+
+#define check_debug(A, M, ...) if (!(A)) { debug(M, ##__VA_ARGS__);\
+	errno = 0; goto error; }
+
+#endif
