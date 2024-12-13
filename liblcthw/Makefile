@@ -1,5 +1,4 @@
 CFLAGS=-g -O2 -Wall -Wextra -I./src -rdynamic -DNDEBUG $(OPTFLAGS)
-LDFLAGS=-L./build/
 # Link libraries
 LDLIBS=-ldl $(OPTLIBS)
 # ? means an optional value
