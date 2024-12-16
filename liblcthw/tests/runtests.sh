@@ -6,7 +6,7 @@ do
 	then
 		if $VALGRIND ./$i 2>> tests/tests.log
 		then
-			echo $i PASS
+			echo "$i: PASS"
 		else
 			echo "ERROR in test $i:"
 			echo "-----"
