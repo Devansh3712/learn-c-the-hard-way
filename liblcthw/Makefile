@@ -1,6 +1,6 @@
 CFLAGS=-g -O2 -Wall -Wextra -I./src -rdynamic -DNDEBUG $(OPTFLAGS)
 # Link libraries
-LDLIBS=-ldl $(OPTLIBS)
+LDLIBS=-ldl -lbsd $(OPTLIBS)
 # ? means an optional value
 PREFIX?=/usr/local
 
