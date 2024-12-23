@@ -1,6 +1,6 @@
 CFLAGS=-g -O2 -Wall -Wextra -I./src -rdynamic -DNDEBUG $(OPTFLAGS)
 # Link libraries
-LDLIBS=-ldl -lbsd $(OPTLIBS)
+LDLIBS=-ldl $(OPTLIBS)
 # ? means an optional value
 PREFIX?=/usr/local
 
@@ -33,7 +33,7 @@ build:
 
 # Unit Tests
 .PHONY: tests
-tests: LDLIBS += $(TARGET)
+tests: LDLIBS += $(TARGET) -lbsd
 tests: $(TESTS)
 	sh ./tests/runtests.sh
 
